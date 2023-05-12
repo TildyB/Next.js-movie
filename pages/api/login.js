@@ -15,6 +15,7 @@ const Payload = z.object({
 
 
 const handler = async (req, res) => {
+  console.log("itt van")
     await connect().catch(err => console.log(err))
     if (req.method == "POST"){
     const loginRequest = req.body
