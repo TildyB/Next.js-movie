@@ -13,7 +13,7 @@ const MovieDrawer = ({ movie, isLoggedIn }) => {
     const getMovie = async () => {
       try{
         const data = await axios.get(
-          `http://localhost:3000/api/reviews/movie?id=${movie.id}`
+          `https://next-js-movie-tau.vercel.app/api/reviews/movie?id=${movie.id}`
           );
         setReviews(data.data.reviews);
       }
@@ -32,7 +32,7 @@ const MovieDrawer = ({ movie, isLoggedIn }) => {
   }, []);
 
   const saveHandler = async () => {
-    const response = await axios.post("http://localhost:3000/api/reviews", {
+    const response = await axios.post("https://next-js-movie-tau.vercel.app/api/reviews", {
       title: movie.title,
       id: movie.id,
       poster_path: movie.poster_path,
@@ -48,7 +48,7 @@ const MovieDrawer = ({ movie, isLoggedIn }) => {
       },
     });
     const data = await axios.get(
-      `http://localhost:3000/api/reviews/movie?id=${movie.id}`
+      `https://next-js-movie-tau.vercel.app/api/reviews/movie?id=${movie.id}`
     );
 
     setReviews(data.data.reviews);

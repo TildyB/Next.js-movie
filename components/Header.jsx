@@ -40,7 +40,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setMovieList,userName }) => {
   
   
   const reviewerInputHandler = async(e) => {
-    const result = await axios.get(`http://localhost:3000/api/reviews/reviewer?name=${e.target.value}`)
+    const result = await axios.get(`https://next-js-movie-tau.vercel.app/api/reviews/reviewer?name=${e.target.value}`)
     console.log(result.data);
     setMovieList(result.data)
   }
