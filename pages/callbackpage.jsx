@@ -29,7 +29,9 @@ const CallbackPage = () => {
                 setTimeout(() => {
                     router.push("/")
                 }, 1700);
-            } 
+            } else{
+                router.push("/")
+            }
         }
         init()
     }, []);
