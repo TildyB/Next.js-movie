@@ -30,6 +30,7 @@ const CallbackPage = () => {
                     router.push("/")
                 }, 1700);
             } else{
+                console.log("ide bejon")
                 router.push("/")
             }
         }
