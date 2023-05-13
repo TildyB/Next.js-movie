@@ -52,10 +52,10 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setMovieList,userName }) => {
         className={styles.logoImg}
       />
       <div className={styles.rightHeaderDiv}>
-        {isLoggedIn && <Input onInput={(e)=>reviewerInputHandler(e)} color='white' placeholder='Search Reviewer' _placeholder={{ opacity: 0.4, color: 'inherit' }} width='200px' />}
-        <Input onInput={(e)=>movieInputHandler(e)} color='white' placeholder='Search Films' _placeholder={{ opacity: 0.4, color: 'inherit' }}width='200px' />
+        {isLoggedIn && <Input  onInput={(e)=>reviewerInputHandler(e)} color='white' placeholder='Search Reviewer' _placeholder={{ opacity: 0.4, color: 'inherit' }} width='200px' />}
+        <Input  onInput={(e)=>movieInputHandler(e)} color='white' placeholder='Search Films' _placeholder={{ opacity: 0.4, color: 'inherit' }}width='200px' />
         {isLoggedIn ?
-          <Button onClick={handleLogout} colorScheme="blue" variant="solid">Logout</Button> :
+          <Button className={styles.logButton} onClick={handleLogout} colorScheme="blue" variant="solid">Logout</Button> :
           <Button onClick={handleLogin} leftIcon={<FcGoogle />} colorScheme="gray" variant="solid">Login</Button>
         }
 

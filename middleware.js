@@ -14,5 +14,5 @@ export async function middleware(req, res){
   }
 
   export const config = {
-    matcher:["/reviews/reviewer","/reviews"]
+    matcher:["/api/reviews/reviewer"]
   }

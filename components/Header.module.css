@@ -25,5 +25,21 @@
 @media screen and (max-width: 1280px) {
     .logoImg{
         max-width: 12rem;
-    }   
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .headerContainer{
+       justify-content: center;
+       align-items: center;
+    }
+    .rightHeaderDiv{
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .logoImg{
+        max-width: 10rem;
+        margin: 10px;
+}
 }
