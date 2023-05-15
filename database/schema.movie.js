@@ -14,9 +14,11 @@ const revMovieSchema = new Schema({
         {
             reviewer: String, // name helyett sub kellene, amit auth-olok az auth MW-vel, A tokenbol fe-n kiszedett sub kell
             text: String,
-            
+            reviewer_email: String,
+            liked: Number,
+            disliked: Number,
         }
-    ]
+    ],
 })
 
  const MovieReview = mongoose.models.MovieReview || mongoose.model('MovieReview', revMovieSchema);

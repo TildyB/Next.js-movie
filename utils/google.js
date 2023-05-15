@@ -23,7 +23,6 @@ const getIdToken = async (code) => {
             code,
             grant_type: "authorization_code"
         })
-        console.log(response.data, "response.data")
         const result = Response.safeParse(response.data)
         if (result.success === false) {
             console.log("getIDToken safeParse error")

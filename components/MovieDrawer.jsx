@@ -1,33 +1,34 @@
 import { useEffect, useState } from "react";
-import { Button, Input } from '@chakra-ui/react'
+import { Button, Textarea  } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 import axios from "axios";
 import Review from "./Review";
 import styles from "./MovieDrawer.module.css";
 
-const MovieDrawer = ({ movie, isLoggedIn }) => {
+const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
   const toast = useToast()
+  const getMovie = async () => {
+    try{
+      const data = await axios.get(
+        `https://next-js-movie-tau.vercel.app/api/reviews/movie?id=${movie.id}`
+        );
+      setReviews(data.data.reviews);
+    }
+    catch(err){
+      if(err.response.status === 404)toast({
+        title: 'No reviews found',
+        position: 'top',
+        description: "Be the first to write a review!",
+        status: 'info',
+        duration: 2000,
+        isClosable: true,
+      })
+    }  
+  };
   useEffect(() => {
-    const getMovie = async () => {
-      try{
-        const data = await axios.get(
-          `https://next-js-movie-tau.vercel.app/api/reviews/movie?id=${movie.id}`
-          );
-        setReviews(data.data.reviews);
-      }
-      catch(err){
-        if(err.response.status === 404)toast({
-          title: 'No reviews found',
-          position: 'top',
-          description: "Be the first to write a review!",
-          status: 'info',
-          duration: 2000,
-          isClosable: true,
-        })
-      }  
-    };
+    console.log("lefut a useEffect ")
     getMovie();
   }, []);
 
@@ -43,8 +44,10 @@ const MovieDrawer = ({ movie, isLoggedIn }) => {
       vote_average: movie.vote_average,
       review: {
         reviewer: localStorage.getItem("user"), // ezt nem kene kuldeni. Majd a BE fogja authMW-vel megtalalni sub alapjan,
-                                                // h ki is volt az iro.
+        reviewer_email: localStorage.getItem("email"),                                        // h ki is volt az iro.
         text: newReview,
+        liked: 0,
+
       },
     });
     const data = await axios.get(
@@ -72,7 +75,7 @@ const MovieDrawer = ({ movie, isLoggedIn }) => {
 
         <div className={styles.leftReviews}>
           <img
-            src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             alt=""
           />
           <h3>{movie.title}</h3>
@@ -86,23 +89,18 @@ const MovieDrawer = ({ movie, isLoggedIn }) => {
           <h2>Reviews</h2>
           <div className={styles.oldReviews}>
             {reviews.length > 0 ?
-              reviews.map((review, i) => <Review key={i} {...{ review }} />) : <h3>No reviews yet.</h3>}
+              reviews.map((review, i) => <Review key={i} setReviews={setReviews} review={review} movieId={movie.id} getMovie={getMovie} />) : <h3>No reviews yet.</h3>}
           </div>
           {isLoggedIn && (
-            <Input
-              type="text"
-              value={newReview}
-              placeholder="Write a review"
-              onInput={(e) => setNewReview(e.target.value)}
-              width='100%'
-            />
+            <Textarea value={newReview} placeholder='Here is a sample placeholder' onInput={(e) => setNewReview(e.target.value)} width='100%'/>
           )}
           {isLoggedIn && (
             <Button
-              disabled={newReview.length > 1 ? false : true}
+              isDisabled={newReview.length > 0 ? false : true}
               onClick={saveHandler}
               colorScheme="green"
               variant="solid"
+              className={styles.saveButton}
             >
               Save review
             </Button>

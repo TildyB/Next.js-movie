@@ -9,7 +9,6 @@ export const UserProvider = ({ children }) => {
   const checkLogin = () => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
-      console.log(token)
       if (token) {
         setIsLoggedIn(true);
       } else {
@@ -17,15 +16,15 @@ export const UserProvider = ({ children }) => {
       }
     }
   };
+
 useEffect(()=>{
     checkLogin()
 },[])
 
 
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  console.log(isLoggedIn)
   const login = (user, token) => {
-    setUser(user);
+    setUserName(user);
     setIsLoggedIn(true);
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));

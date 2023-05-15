@@ -1,10 +1,20 @@
 .revCard {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgb(255, 255, 255);
     color: black;
     border: 1px solid rgb(0, 0, 78);
     border-radius: 1rem;
     padding: 0.5rem;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.innerUpperDiv{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(199, 199, 199);
 }
 
 .revCard h5 {
@@ -13,5 +23,45 @@
 }
 
 .revCard p {
-    color: white
+    color: rgb(0, 0, 0)
+}
+.deleteButton{
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.likeAmount{
+    display: flex;
+    align-items: center;
+    gap:6px
+}
+.alreadyLiked{
+    margin-top: 3px;
+    padding: 3px;
+    background-color: #5CABF0;
+    border-radius: 30px;
+}
+.buttonDiv{
+    display: flex;
+    justify-content: center;
+}
+.likeButton{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    border: 1px solid rgb(158, 158, 159);
+    border-radius: 5px;
+    width: 30%;
+}
+
+@media screen and (max-width: 570px) {
+    .likeButton{
+        width: 100%;
+    }
 }

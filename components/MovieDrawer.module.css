@@ -98,6 +98,10 @@
     color: aliceblue;
 }
 
+.saveButton{
+    margin-top: 10px;
+}
+
 /* .DDDdrawerBox {
     background-color: aqua;
     height: 100%;

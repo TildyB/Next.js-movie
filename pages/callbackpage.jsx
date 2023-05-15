@@ -19,18 +19,18 @@ const CallbackPage = () => {
 
         const urlSearchParams = new URLSearchParams(window.location.search)
         const code = urlSearchParams.get("code")
-        console.log(code)
         const init = async () => {
             const data = await sendCode(code)
+            console.log(data)
             localStorage.setItem("token", data.sessionToken) // sub-ot, name-et ebbol kiszedni decode-utan
             localStorage.setItem("user", data.username) // ez nem kell
+            localStorage.setItem("email", data.email)
             setIsLoggedIn(true)
             if(process.env.NODE_ENV === "development"){
                 setTimeout(() => {
                     router.push("/")
                 }, 1700);
             } else{
-                console.log("ide bejon")
                 router.push("/")
             }
         }

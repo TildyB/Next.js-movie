@@ -9,7 +9,6 @@ const handler = async (req, res) => {
         if(!id) return res.status(400).send("Bad request")
 
         const movie = await MovieReview.findOne({ id })
-        console.log(movie)
         if (!movie) return res.status(404).send("Movie not found")
         return res.json(movie)
     }

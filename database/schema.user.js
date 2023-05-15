@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     name: String,
     sub: String,
-    email: {type: String, required: true}
-
+    email: {type: String, required: true},
+    likedReviews: [String]
 })
 
 

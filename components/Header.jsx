@@ -7,17 +7,15 @@ import { useRouter } from "next/router";
 
 
 const Header = ({ isLoggedIn, setIsLoggedIn, setMovieList,userName }) => {
-
   const router = useRouter()
   const url = "https://accounts.google.com/o/oauth2/v2/auth"
   const client_id = "169346533635-mt05gutaslpavfvje15a1hnjauudu3tc.apps.googleusercontent.com"
-  const redirect_URI = 'https://next-js-movie-tau.vercel.app/callbackpage'
+  const redirect_URI = "https://next-js-movie-tau.vercel.app/callbackpage"
   const scope = 'profile%20email%20openid'
   const response_type = 'code'
   const fullUrl = `${url}?client_id=${client_id}&redirect_uri=${redirect_URI}&scope=${scope}&response_type=${response_type}&prompt=consent%20select_account`
   let name
   const handleLogin = () => {
-    console.log(fullUrl)
     window.location.href = fullUrl;
   }
 
@@ -41,7 +39,6 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setMovieList,userName }) => {
   
   const reviewerInputHandler = async(e) => {
     const result = await axios.get(`https://next-js-movie-tau.vercel.app/api/reviews/reviewer?name=${e.target.value}`)
-    console.log(result.data);
     setMovieList(result.data)
   }
   return (

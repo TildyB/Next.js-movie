@@ -8,7 +8,6 @@ const handler = async (req, res) => {
             const name = req.query.name
             // User.find({ username: {$regex : "^" + req.params.username}});
             const movies = await Movie.find({ "reviews.reviewer": {$regex : "^" + name} })
-            console.log(movies)
             if (!movies.length) return res.status(404)
             return res.send(movies)
         }

@@ -14,7 +14,6 @@ const Dashboard = () => {
     
     const [movieList, setMovieList] = useState([]);
 
-    console.log(movieList);
 
     useEffect(()=>{
         if (!movieList.length) {
@@ -32,7 +31,7 @@ const Dashboard = () => {
             title: 'Login successful',
             description: "Feel free to search and write reviews",
             status: 'success',
-            duration: 9000,
+            duration: 2000,
             isClosable: true,
           })
           
