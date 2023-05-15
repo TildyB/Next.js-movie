@@ -22,7 +22,7 @@ const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
       setLoading(false);
     }
     catch(err){
-      if(err.response.status === 404)toast({
+      if(err.response.status === 404){toast({
         title: 'No reviews found',
         position: 'top',
         description: "Be the first to write a review!",
@@ -30,6 +30,8 @@ const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
         duration: 2000,
         isClosable: true,
       })
+      setLoading(false);
+    }
     }  
   };
   useEffect(() => {
@@ -88,7 +90,10 @@ const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
           <p>{movie.overview}</p>
         </div>
 
-      {loading ? <CircularProgress isIndeterminate color="green.300" /> :
+      {loading ? 
+      <div className={styles.loading} >
+        <CircularProgress isIndeterminate color="blue.600" /> 
+      </div>:
         <div className={styles.rightReviews}>
           <h2>Reviews</h2>
           <div className={styles.oldReviews}>
