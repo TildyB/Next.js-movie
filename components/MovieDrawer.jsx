@@ -4,17 +4,22 @@ import { useToast } from '@chakra-ui/react'
 import axios from "axios";
 import Review from "./Review";
 import styles from "./MovieDrawer.module.css";
+import { CircularProgress} from '@chakra-ui/react'
+
 
 const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
+  const [loading, setLoading] = useState(false);
   const toast = useToast()
   const getMovie = async () => {
+    setLoading(true);
     try{
       const data = await axios.get(
         `https://next-js-movie-tau.vercel.app/api/reviews/movie?id=${movie.id}`
         );
       setReviews(data.data.reviews);
+      setLoading(false);
     }
     catch(err){
       if(err.response.status === 404)toast({
@@ -28,7 +33,6 @@ const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
     }  
   };
   useEffect(() => {
-    console.log("lefut a useEffect ")
     getMovie();
   }, []);
 
@@ -84,7 +88,7 @@ const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
           <p>{movie.overview}</p>
         </div>
 
-
+      {loading ? <CircularProgress isIndeterminate color="green.300" /> :
         <div className={styles.rightReviews}>
           <h2>Reviews</h2>
           <div className={styles.oldReviews}>
@@ -107,7 +111,7 @@ const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
           )}
 
         </div>
-
+}
 
       </div>
     </div>
