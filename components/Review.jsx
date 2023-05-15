@@ -6,7 +6,7 @@ import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { SlLike } from "react-icons/sl";
 import axios from "axios";
-const Review = ({ review, movieId, setReviews }) => {
+const Review = ({ review, movieId, setReviews ,isLoggedIn }) => {
   const toast = useToast();
   const [ownComment, setOwnComment] = useState(false);
   const [alreadyLiked, setAlreadyLiked] = useState(false);
@@ -79,8 +79,7 @@ const Review = ({ review, movieId, setReviews }) => {
   };
 
   useEffect(() => {
-    if (review.reviewer_email === localStorage.getItem("email"))
-      setOwnComment(true);
+    if (review.reviewer_email === localStorage.getItem("email")) setOwnComment(true);
     checkIfLiked();
   }, []);
   return (
@@ -117,6 +116,7 @@ const Review = ({ review, movieId, setReviews }) => {
             <h1>No likes yet! </h1>
           )}
         </div>
+        { isLoggedIn &&
         <div className={styles.buttonDiv}>
           {alreadyLiked ? (
             <div onClick={removeLike} className={styles.likedButton}>
@@ -130,6 +130,7 @@ const Review = ({ review, movieId, setReviews }) => {
             </div>
           )}
         </div>
+        }
       </div>
     </div>
   );

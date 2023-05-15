@@ -98,7 +98,7 @@ const MovieDrawer = ({ movie, isLoggedIn,userName }) => {
           <h2>Reviews</h2>
           <div className={styles.oldReviews}>
             {reviews.length > 0 ?
-              reviews.map((review, i) => <Review key={i} setReviews={setReviews} review={review} movieId={movie.id} getMovie={getMovie} />) : <h3>No reviews yet.</h3>}
+              reviews.map((review, i) => <Review key={i} setReviews={setReviews} review={review} movieId={movie.id} getMovie={getMovie} isLoggedIn={isLoggedIn} />) : <h3>No reviews yet.</h3>}
           </div>
           {isLoggedIn && (
             <Textarea value={newReview} placeholder='Here is a sample placeholder' onInput={(e) => setNewReview(e.target.value)} width='100%'/>
