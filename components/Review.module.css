@@ -59,6 +59,18 @@
     border-radius: 5px;
     width: 30%;
 }
+.likedButton{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    border: 1px solid rgb(158, 158, 159);
+    border-radius: 5px;
+    width: 30%;
+    color: white;
+    background-color: #5CABF0;
+}
 
 @media screen and (max-width: 570px) {
     .likeButton{

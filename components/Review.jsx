@@ -119,7 +119,7 @@ const Review = ({ review, movieId, setReviews }) => {
         </div>
         <div className={styles.buttonDiv}>
           {alreadyLiked ? (
-            <div onClick={removeLike} className={styles.likeButton}>
+            <div onClick={removeLike} className={styles.likedButton}>
               <AiFillLike />
               <h1>Liked</h1>
             </div>
